@@ -11,7 +11,18 @@
 <script type="text/javascript" src="js/jquery.qrcode.min.js?v=1"></script>
 
 <script>
-
+    jQuery(function () {
+        update_time();
+        jQuery('#output').qrcode({
+            render: "canvas",
+            width: 180,
+            height: 180,
+            text: 'jT6tmuodGqJ8BxagWnLHpZxliL72o9hFQUIhgyV7QgSIdTH2Hnnom0/HUOdO+OWkqgPztC2M0GA=',
+            foreground: "#1E90FF",
+            background: "#FFF",
+        });
+    })
+    
     function update_time() {
         let nowtime = new Date();
         let year = nowtime.getFullYear();
