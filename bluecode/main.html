@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>浙江大学通行码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+
+<script src="js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.qrcode.min.js?v=1"></script>
+
+<script>
+    jQuery(function () {
+        alert('点击申请流程切换姓名')
+        update_time();
+        jQuery('#output').qrcode({
+            render: "canvas",
+            width: 180,
+            height: 180,
+            text: 'jT6tmuodGqJ8BxagWnLHpZxliL72o9hFQUIhgyV7QgSIdTH2Hnnom0/HUOdO+OWkqgPztC2M0GA=',
+            foreground: "#1E90FF",
+            background: "#FFF",
+        });
+    })
+
+    function update_time() {
+        let nowtime = new Date();
+        let year = nowtime.getFullYear();
+        let month = nowtime.getMonth() + 1;
+        let d = new Date(year, month, 0);
+        let days = d.getDate();
+        let day = nowtime.getDate();
+        let hour = nowtime.getHours();
+        let minutes = nowtime.getMinutes();
+        let seconds = nowtime.getSeconds();
+        $("#dateTime").append('<div class="time">同步时间：' + p(year) + '-' + p(month) + "-" + p(day) + ' ' + p(hour) + ":" + p(minutes) + ":" + p(seconds));
+        $("#valid").append('<div class="time">有效期：' + p(year) + '-' + p(month) + "-01 - " + p(year) + '-' + p(month) + "-" + p(days) + '</div>');
+    }
+
+    function showTime() {
+        let nowtime = new Date();
+        let month = nowtime.getMonth() + 1;
+        let day = nowtime.getDate();
+        let hour = nowtime.getHours();
+        let minutes = nowtime.getMinutes();
+        let seconds = nowtime.getSeconds();
+        document.getElementById("div_timer").innerText = p(month) + "月" + p(day) + "日 " + p(hour) + ":" + p(minutes) + ":" + p(seconds);
+    }
+
+    setInterval("showTime()", 1000);
+
+    function p(s) {
+        return s < 10 ? '0' + s : s;
+    }
+
+    function change_name() {
+        $('#name').html(window.prompt("你的名字") + '的通行码')
+    }
+
+</script>
+
+
+<body class="blue-bg">
+<div class="banner"><img src="images/text.png" alt=""></div>
+
+
+<div class="content-box">
+    <div class="top-title">
+        <h3 id="name">李华的通行码</h3>
+        <span class="bgr-blue">研究生</span>
+    </div>
+    <strong>
+        <div class="time2" id="div_timer" style="white-space:pre"></div>
+    </strong>
+    <div class="qr">
+        <div id="output" style="margin-top: 10px;margin-bottom: 10px"></div>
+    </div>
+    <div class="time" id='valid'></div>
+    <div id="hzjkm">
+        <div class="hz" style="color: #55b957">健康码为 绿码</div>
+    </div>
+    <div style="text-align: center;">
+        <button style="background: rgb(91,145,201);border: 0;height: 30px;width: 200px;border-radius: 5px;"><a
+                style="text-decoration: none" target="_blank"><span
+                style="color: white;">查询新冠疫苗接种记录</span></a></button>
+    </div>
+    <div id="dateTime"></div>
+    <p class="tip" style="margin-top: 10px;">凭蓝码可在浙江大学校园内通行<br>请主动出示，配合检查</p>
+    <div style="text-align:center; margin-top: 10px">
+        <a target="_blank" href="">申请流程</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="">申请记录</a>
+    </div>
+</div>
+<div class="bottom-tip">
+    <h3>安 保 处 ：0571-88206110</h3>
+    <a href="http://xwfw.zju.edu.cn/mobile/redir.php?catalog_id=371039" target="_blank" class="link-btn">常见问题</a>
+    <h3>技术支持：0571-87951669</h3>
+</div>
+</body>
+</html>
